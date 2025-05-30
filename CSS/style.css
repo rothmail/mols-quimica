@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #4a3c31;
+    padding: 20px;
+    user-select: none;
+}
+
+h1 {
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 6px rgba(74, 60, 49, 0.5);
+    font-size: 1.8rem;
+}
+
+#game-info {
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(74, 60, 49, 0.5);
+}
+
+#board {
+    width: 720px;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 15px;
+    perspective: 900px;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    padding-top: 130%;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(74, 60, 49, 0.3);
+    background: transparent;
+}
+
+.card.flip {
+    transform: rotateY(180deg);
+    cursor: default;
+}
+
+.card.matched {
+    cursor: default;
+    box-shadow: 0 0 20px 3px #b35c00;
+    animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px 2px #b35c00;
+    }
+
+    100% {
+        box-shadow: 0 0 24px 6px #ff9100;
+    }
+}
+
+.card .front,
+.card .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    padding: 12px;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.78rem;
+    line-height: 1.1rem;
+    user-select: text;
+}
+
+.card .front {
+    background: #a35628;
+    color: #f9f3e9;
+    box-shadow: inset 0 0 15px #6e3e10;
+    font-weight: 600;
+    padding: 15px;
+}
+
+.card .back {
+    background: #ffd8b1;
+    color: #6e3e10;
+    transform: rotateY(180deg);
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#result-message {
+    margin-top: 25px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 12px #fff;
+    text-align: center;
+    color: #4a3c31;
+}
+
+#restart-btn {
+    margin-top: 20px;
+    background: #b35c00;
+    background: linear-gradient(45deg, #ff9100, #b35c00);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px #ffb347;
+    transition: transform 0.2s ease;
+}
+
+#restart-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px #ffb347;
+}
+
+@media (max-width: 700px) {
+    #board {
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+    }
+}
